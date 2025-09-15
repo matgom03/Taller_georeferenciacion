@@ -1,0 +1,2093 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Implementacion &#8212; Taller Georeferenciacion</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Taller_georeferenciacion';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Explicacion Dataset" href="Informe_Taller.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Introduccion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/LogoUN.png" class="logo__image only-light" alt="Taller Georeferenciacion - Home"/>
+    <script>document.write(`<img src="_static/LogoUN.png" class="logo__image only-dark" alt="Taller Georeferenciacion - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduccion.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Implementacion</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Informe_Taller.html">Explicacion Dataset</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTaller_georeferenciacion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Taller_georeferenciacion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Implementacion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Implementacion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias">Librerias</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-utilizadas">Funciones utilizadas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-shapefile">Cargado de shapefile</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-del-dataset">Cargado del dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-dataset">Preparacion del dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-de-los-datos">Merge de los datos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-graficos-coropleticos">Visualizacion de Graficos coropleticos</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="implementacion">
+<h1>Implementacion<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="librerias">
+<h1>Librerias<a class="headerlink" href="#librerias" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">janitor</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jan</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>              
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="funciones-utilizadas">
+<h1>Funciones utilizadas<a class="headerlink" href="#funciones-utilizadas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">Summary</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sheet</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hoja: </span><span class="si">{</span><span class="n">sheet</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Crear la tabla de resumen</span>
+    <span class="n">resumen</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Cantidad de filas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;Cantidad de columnas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;Datos faltantes&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+        <span class="s2">&quot;Filas duplicadas&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Convertir el resumen en un DataFrame</span>
+    <span class="n">ResumenHoja</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resumen</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Resumen&quot;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Resumen:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">ResumenHoja</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Encabezado:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cargado-de-shapefile">
+<h1>Cargado de shapefile<a class="headerlink" href="#cargado-de-shapefile" title="Link to this heading">#</a></h1>
+<p>Se realiza el cargado del shapefile del DANE correspondiente a los municipios</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shapefile_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:/Users/User/Documents/DatavizUN/MGN2024_MPIO_POLITICO/MGN_ADM_MPIO_GRAFICO.shp&quot;</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">shapefile_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  
+<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dpto_ccdgo</th>
+      <th>mpio_ccdgo</th>
+      <th>mpio_cdpmp</th>
+      <th>dpto_cnmbr</th>
+      <th>mpio_cnmbr</th>
+      <th>mpio_crslc</th>
+      <th>mpio_tipo</th>
+      <th>mpio_narea</th>
+      <th>mpio_nano</th>
+      <th>shape_Leng</th>
+      <th>shape_Area</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>05</td>
+      <td>001</td>
+      <td>05001</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>1965</td>
+      <td>MUNICIPIO</td>
+      <td>374.834005</td>
+      <td>2024</td>
+      <td>1.035380</td>
+      <td>0.030608</td>
+      <td>POLYGON ((-75.66974 6.3736, -75.66965 6.3736, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>05</td>
+      <td>002</td>
+      <td>05002</td>
+      <td>ANTIOQUIA</td>
+      <td>ABEJORRAL</td>
+      <td>1814</td>
+      <td>MUNICIPIO</td>
+      <td>507.141095</td>
+      <td>2024</td>
+      <td>1.158504</td>
+      <td>0.041384</td>
+      <td>POLYGON ((-75.46938 5.94575, -75.46897 5.94571...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>05</td>
+      <td>004</td>
+      <td>05004</td>
+      <td>ANTIOQUIA</td>
+      <td>ABRIAQUÍ</td>
+      <td>1912</td>
+      <td>MUNICIPIO</td>
+      <td>296.894050</td>
+      <td>2024</td>
+      <td>0.812183</td>
+      <td>0.024248</td>
+      <td>POLYGON ((-76.08351 6.7505, -76.08325 6.75048,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>05</td>
+      <td>021</td>
+      <td>05021</td>
+      <td>ANTIOQUIA</td>
+      <td>ALEJANDRÍA</td>
+      <td>Decreto departamental 304 de 1907</td>
+      <td>MUNICIPIO</td>
+      <td>128.932153</td>
+      <td>2024</td>
+      <td>0.705200</td>
+      <td>0.010535</td>
+      <td>POLYGON ((-75.0332 6.41586, -75.03313 6.41585,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>05</td>
+      <td>030</td>
+      <td>05030</td>
+      <td>ANTIOQUIA</td>
+      <td>AMAGÁ</td>
+      <td>1912</td>
+      <td>MUNICIPIO</td>
+      <td>84.132477</td>
+      <td>2024</td>
+      <td>0.445533</td>
+      <td>0.006867</td>
+      <td>POLYGON ((-75.67587 6.08561, -75.6754 6.08491,...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Podemos observar que el shapefile descargado contiene el DPTO_CCDGO, geometry y DPTO_CNMBR</p>
+<p>filtramos los municipios de antioquia</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antioquia</span><span class="o">=</span><span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;dpto_cnmbr&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;ANTIOQUIA&#39;</span><span class="p">]</span>
+<span class="n">antioquia</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dpto_ccdgo</th>
+      <th>mpio_ccdgo</th>
+      <th>mpio_cdpmp</th>
+      <th>dpto_cnmbr</th>
+      <th>mpio_cnmbr</th>
+      <th>mpio_crslc</th>
+      <th>mpio_tipo</th>
+      <th>mpio_narea</th>
+      <th>mpio_nano</th>
+      <th>shape_Leng</th>
+      <th>shape_Area</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>05</td>
+      <td>001</td>
+      <td>05001</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>1965</td>
+      <td>MUNICIPIO</td>
+      <td>374.834005</td>
+      <td>2024</td>
+      <td>1.035380</td>
+      <td>0.030608</td>
+      <td>POLYGON ((-75.66974 6.3736, -75.66965 6.3736, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>05</td>
+      <td>002</td>
+      <td>05002</td>
+      <td>ANTIOQUIA</td>
+      <td>ABEJORRAL</td>
+      <td>1814</td>
+      <td>MUNICIPIO</td>
+      <td>507.141095</td>
+      <td>2024</td>
+      <td>1.158504</td>
+      <td>0.041384</td>
+      <td>POLYGON ((-75.46938 5.94575, -75.46897 5.94571...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>05</td>
+      <td>004</td>
+      <td>05004</td>
+      <td>ANTIOQUIA</td>
+      <td>ABRIAQUÍ</td>
+      <td>1912</td>
+      <td>MUNICIPIO</td>
+      <td>296.894050</td>
+      <td>2024</td>
+      <td>0.812183</td>
+      <td>0.024248</td>
+      <td>POLYGON ((-76.08351 6.7505, -76.08325 6.75048,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>05</td>
+      <td>021</td>
+      <td>05021</td>
+      <td>ANTIOQUIA</td>
+      <td>ALEJANDRÍA</td>
+      <td>Decreto departamental 304 de 1907</td>
+      <td>MUNICIPIO</td>
+      <td>128.932153</td>
+      <td>2024</td>
+      <td>0.705200</td>
+      <td>0.010535</td>
+      <td>POLYGON ((-75.0332 6.41586, -75.03313 6.41585,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>05</td>
+      <td>030</td>
+      <td>05030</td>
+      <td>ANTIOQUIA</td>
+      <td>AMAGÁ</td>
+      <td>1912</td>
+      <td>MUNICIPIO</td>
+      <td>84.132477</td>
+      <td>2024</td>
+      <td>0.445533</td>
+      <td>0.006867</td>
+      <td>POLYGON ((-75.67587 6.08561, -75.6754 6.08491,...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>05</td>
+      <td>885</td>
+      <td>05885</td>
+      <td>ANTIOQUIA</td>
+      <td>YALÍ</td>
+      <td>Ordenanza 11 de Noviembrebre 12 de 1959</td>
+      <td>MUNICIPIO</td>
+      <td>440.856388</td>
+      <td>2024</td>
+      <td>1.419594</td>
+      <td>0.036051</td>
+      <td>POLYGON ((-74.63958 6.79709, -74.63947 6.79702...</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>05</td>
+      <td>887</td>
+      <td>05887</td>
+      <td>ANTIOQUIA</td>
+      <td>YARUMAL</td>
+      <td>1911</td>
+      <td>MUNICIPIO</td>
+      <td>712.572037</td>
+      <td>2024</td>
+      <td>1.736343</td>
+      <td>0.058278</td>
+      <td>POLYGON ((-75.31703 7.23923, -75.31698 7.23923...</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>05</td>
+      <td>890</td>
+      <td>05890</td>
+      <td>ANTIOQUIA</td>
+      <td>YOLOMBÓ</td>
+      <td>Decreto departamental 384 del 12 de Abril de 1883</td>
+      <td>MUNICIPIO</td>
+      <td>943.972083</td>
+      <td>2024</td>
+      <td>2.921175</td>
+      <td>0.077177</td>
+      <td>POLYGON ((-75.02661 6.83466, -75.0265 6.83463,...</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>05</td>
+      <td>893</td>
+      <td>05893</td>
+      <td>ANTIOQUIA</td>
+      <td>YONDÓ</td>
+      <td>Ordenanza 38 de Noviembrebre 23 de 1978</td>
+      <td>MUNICIPIO</td>
+      <td>1894.981160</td>
+      <td>2024</td>
+      <td>2.348293</td>
+      <td>0.155050</td>
+      <td>POLYGON ((-73.92444 7.26587, -73.92436 7.2649,...</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>05</td>
+      <td>895</td>
+      <td>05895</td>
+      <td>ANTIOQUIA</td>
+      <td>ZARAGOZA</td>
+      <td>1770</td>
+      <td>MUNICIPIO</td>
+      <td>1167.398721</td>
+      <td>2024</td>
+      <td>2.446658</td>
+      <td>0.095614</td>
+      <td>POLYGON ((-74.76103 7.72477, -74.76084 7.7245,...</td>
+    </tr>
+  </tbody>
+</table>
+<p>125 rows × 12 columns</p>
+</div></div></div>
+</div>
+<p>se crea un grafico para revisar que se hizo correctamente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Grafico del departamento de antioquia y sus municipios</span>
+<span class="n">antioquia</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Municipios de Antioquia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2a0a0780b72d9c729a6486934925f9dbf6e681b43f33c69c9bdbdd5913d5e9bd.png" src="_images/2a0a0780b72d9c729a6486934925f9dbf6e681b43f33c69c9bdbdd5913d5e9bd.png" />
+</div>
+</div>
+<p>Podemos observar que el filtrado se realizo correctamente</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cargado-del-dataset">
+<h1>Cargado del dataset<a class="headerlink" href="#cargado-del-dataset" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Mortalidad_General_en_el_departamento_de_Antioquia_desde_2005_20250913.csv&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NombreMunicipio</th>
+      <th>CodigoMunicipio</th>
+      <th>Ubicacion</th>
+      <th>NombreRegion</th>
+      <th>CodigoRegion</th>
+      <th>Año</th>
+      <th>NumeroCasos</th>
+      <th>TasaXMilHabitantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Abejorral</td>
+      <td>5002</td>
+      <td>POINT (-75.427045 5.79145)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>146</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Abriaquí</td>
+      <td>5004</td>
+      <td>POINT (-76.064563 6.63197)</td>
+      <td>OCCIDENTE</td>
+      <td>6</td>
+      <td>2005</td>
+      <td>13</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alejandría</td>
+      <td>5021</td>
+      <td>POINT (-75.141258 6.376923)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>27</td>
+      <td>7.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Amagá</td>
+      <td>5030</td>
+      <td>POINT (-75.703216 6.04063)</td>
+      <td>SUROESTE</td>
+      <td>8</td>
+      <td>2005</td>
+      <td>137</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Amalfi</td>
+      <td>5031</td>
+      <td>POINT (-75.075028 6.907385)</td>
+      <td>NORDESTE</td>
+      <td>4</td>
+      <td>2005</td>
+      <td>112</td>
+      <td>5.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preparacion-del-dataset">
+<h1>Preparacion del dataset<a class="headerlink" href="#preparacion-del-dataset" title="Link to this heading">#</a></h1>
+<p>Se va a revisar primero el dataset antes de realizar cualquier tipo de preparacion</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Summary</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;df&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hoja: df
+
+Resumen:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cantidad de filas</th>
+      <th>Cantidad de columnas</th>
+      <th>Datos faltantes</th>
+      <th>Filas duplicadas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Resumen</th>
+      <td>2125</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encabezado:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NombreMunicipio</th>
+      <th>CodigoMunicipio</th>
+      <th>Ubicacion</th>
+      <th>NombreRegion</th>
+      <th>CodigoRegion</th>
+      <th>Año</th>
+      <th>NumeroCasos</th>
+      <th>TasaXMilHabitantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Abejorral</td>
+      <td>5002</td>
+      <td>POINT (-75.427045 5.79145)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>146</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Abriaquí</td>
+      <td>5004</td>
+      <td>POINT (-76.064563 6.63197)</td>
+      <td>OCCIDENTE</td>
+      <td>6</td>
+      <td>2005</td>
+      <td>13</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alejandría</td>
+      <td>5021</td>
+      <td>POINT (-75.141258 6.376923)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>27</td>
+      <td>7.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Amagá</td>
+      <td>5030</td>
+      <td>POINT (-75.703216 6.04063)</td>
+      <td>SUROESTE</td>
+      <td>8</td>
+      <td>2005</td>
+      <td>137</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Amalfi</td>
+      <td>5031</td>
+      <td>POINT (-75.075028 6.907385)</td>
+      <td>NORDESTE</td>
+      <td>4</td>
+      <td>2005</td>
+      <td>112</td>
+      <td>5.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2125, 8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;NombreMunicipio&#39;, &#39;CodigoMunicipio&#39;, &#39;Ubicacion&#39;, &#39;NombreRegion&#39;,
+       &#39;CodigoRegion&#39;, &#39;Año&#39;, &#39;NumeroCasos&#39;, &#39;TasaXMilHabitantes&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 2125 entries, 0 to 2124
+Data columns (total 8 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   NombreMunicipio     2125 non-null   object 
+ 1   CodigoMunicipio     2125 non-null   int64  
+ 2   Ubicacion           2125 non-null   object 
+ 3   NombreRegion        2125 non-null   object 
+ 4   CodigoRegion        2125 non-null   int64  
+ 5   Año                 2125 non-null   int64  
+ 6   NumeroCasos         2125 non-null   int64  
+ 7   TasaXMilHabitantes  2125 non-null   float64
+dtypes: float64(1), int64(4), object(3)
+memory usage: 132.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos observar como esta el dataset antes de realizar cualquier preparacion, a partir de ahora se empezara a preparar el dataset para el merge</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#utilizamos janitor para limpiar los nombres de la base de datos </span>
+<span class="n">df</span><span class="o">=</span><span class="n">jan</span><span class="o">.</span><span class="n">clean_names</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nombremunicipio</th>
+      <th>codigomunicipio</th>
+      <th>ubicacion</th>
+      <th>nombreregion</th>
+      <th>codigoregion</th>
+      <th>ano</th>
+      <th>numerocasos</th>
+      <th>tasaxmilhabitantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Abejorral</td>
+      <td>5002</td>
+      <td>POINT (-75.427045 5.79145)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>146</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Abriaquí</td>
+      <td>5004</td>
+      <td>POINT (-76.064563 6.63197)</td>
+      <td>OCCIDENTE</td>
+      <td>6</td>
+      <td>2005</td>
+      <td>13</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alejandría</td>
+      <td>5021</td>
+      <td>POINT (-75.141258 6.376923)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+      <td>27</td>
+      <td>7.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Amagá</td>
+      <td>5030</td>
+      <td>POINT (-75.703216 6.04063)</td>
+      <td>SUROESTE</td>
+      <td>8</td>
+      <td>2005</td>
+      <td>137</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Amalfi</td>
+      <td>5031</td>
+      <td>POINT (-75.075028 6.907385)</td>
+      <td>NORDESTE</td>
+      <td>4</td>
+      <td>2005</td>
+      <td>112</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2120</th>
+      <td>Yalí</td>
+      <td>5885</td>
+      <td>POINT (-74.842107 6.675328)</td>
+      <td>NORDESTE</td>
+      <td>4</td>
+      <td>2021</td>
+      <td>56</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>2121</th>
+      <td>Yarumal</td>
+      <td>5887</td>
+      <td>POINT (-75.416733 6.963321)</td>
+      <td>NORTE</td>
+      <td>5</td>
+      <td>2021</td>
+      <td>318</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>2122</th>
+      <td>Yolombó</td>
+      <td>5890</td>
+      <td>POINT (-75.01183 6.59926)</td>
+      <td>NORDESTE</td>
+      <td>4</td>
+      <td>2021</td>
+      <td>162</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>2123</th>
+      <td>Yondó</td>
+      <td>5893</td>
+      <td>POINT (-73.909599 7.007398)</td>
+      <td>MAGDALENA MEDIO</td>
+      <td>3</td>
+      <td>2021</td>
+      <td>122</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>2124</th>
+      <td>Zaragoza</td>
+      <td>5895</td>
+      <td>POINT (-74.868261 7.492548)</td>
+      <td>BAJO CAUCA</td>
+      <td>2</td>
+      <td>2021</td>
+      <td>132</td>
+      <td>5.1</td>
+    </tr>
+  </tbody>
+</table>
+<p>2125 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#convertir en objetos a variables que fueron importadas como flotantes para realizar una mejor manipulacion</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ano&#39;</span><span class="p">:</span><span class="s1">&#39;anio&#39;</span><span class="p">})</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;anio&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;anio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigoregion&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigoregion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 2125 entries, 0 to 2124
+Data columns (total 8 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   nombremunicipio     2125 non-null   object 
+ 1   codigomunicipio     2125 non-null   object 
+ 2   ubicacion           2125 non-null   object 
+ 3   nombreregion        2125 non-null   object 
+ 4   codigoregion        2125 non-null   object 
+ 5   anio                2125 non-null   object 
+ 6   numerocasos         2125 non-null   int64  
+ 7   tasaxmilhabitantes  2125 non-null   float64
+dtypes: float64(1), int64(1), object(6)
+memory usage: 132.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos observar que los cambios se guardaron correctamente</p>
+<p>revisamos si hay datos faltantes en el dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#revision de datos faltantes </span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nombremunicipio       0
+codigomunicipio       0
+ubicacion             0
+nombreregion          0
+codigoregion          0
+anio                  0
+numerocasos           0
+tasaxmilhabitantes    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>podemos observar que no habia datos faltantes en el dataset</p>
+<p>revisamos los outliers de la tasaxmilhabitantes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/d9fa4591653c6d5068b076b2cb40556cfc3b9435213a1b34d7c7df1a6756cb3f.png" src="_images/d9fa4591653c6d5068b076b2cb40556cfc3b9435213a1b34d7c7df1a6756cb3f.png" />
+</div>
+</div>
+<p>Podemos observar que existen valores atipicos en la tasa de mortalidad por mil habitantes, siendo normalmente mayores a 8 en la tasa los que se consideran atipicos, debido a que estos son valores reales no se van a tratar en la preparacion</p>
+<p>realizamos una descripcion de las variables del dataset usando describe</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#resumen de variables numericas </span>
+<span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numerocasos</th>
+      <th>tasaxmilhabitantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2125.00</td>
+      <td>2125.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>253.09</td>
+      <td>5.01</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1236.81</td>
+      <td>1.40</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>5.00</td>
+      <td>0.80</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>42.00</td>
+      <td>4.10</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>82.00</td>
+      <td>4.80</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>157.00</td>
+      <td>5.70</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>21917.00</td>
+      <td>13.70</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#resumen de variables categoricas </span>
+<span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nombremunicipio</th>
+      <th>codigomunicipio</th>
+      <th>ubicacion</th>
+      <th>nombreregion</th>
+      <th>codigoregion</th>
+      <th>anio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2125</td>
+      <td>2125</td>
+      <td>2125</td>
+      <td>2125</td>
+      <td>2125</td>
+      <td>2125</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>125</td>
+      <td>125</td>
+      <td>125</td>
+      <td>9</td>
+      <td>9</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Abejorral</td>
+      <td>5002</td>
+      <td>POINT (-75.427045 5.79145)</td>
+      <td>ORIENTE</td>
+      <td>7</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>17</td>
+      <td>17</td>
+      <td>17</td>
+      <td>391</td>
+      <td>391</td>
+      <td>125</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>revisamos el formato de los codigos de los 2 dataset a ver si hay diferencias entre ellos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#codigo de municipio del df </span>
+<span class="n">codigo_1</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">]</span>
+<span class="n">codigo_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       5002
+1       5004
+2       5021
+3       5030
+4       5031
+        ... 
+2120    5885
+2121    5887
+2122    5890
+2123    5893
+2124    5895
+Name: codigomunicipio, Length: 2125, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># codigo de municipios de antioquia del sahpefile </span>
+<span class="n">codigo_2</span><span class="o">=</span><span class="n">antioquia</span><span class="p">[</span><span class="s1">&#39;mpio_cdpmp&#39;</span><span class="p">]</span>
+<span class="n">codigo_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      05001
+1      05002
+2      05004
+3      05021
+4      05030
+       ...  
+120    05885
+121    05887
+122    05890
+123    05893
+124    05895
+Name: mpio_cdpmp, Length: 125, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>podemos observar que ambos codigos estan en diferente formato, debemos cambiar la forma en la que se escribe el codigo del dataframe para poder hacer el merge</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#se le añade zfill 5 debido a que es el codigo de municipio</span>
+<span class="n">codigo_1</span><span class="o">=</span> <span class="n">codigo_1</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">codigo_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       05002
+1       05004
+2       05021
+3       05030
+4       05031
+        ...  
+2120    05885
+2121    05887
+2122    05890
+2123    05893
+2124    05895
+Name: codigomunicipio, Length: 2125, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Realizamos un groupby antes de realizar el merge para mostrar en el mapa la tasa promedio general de cada municipio y el numero de casos total a lo largo de los años</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#se reescribe la variable de codigo municipio con el codigo arrregaldo </span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">codigo_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#recuperamos la poblacion original en el dataset </span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;poblacion&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numerocasos&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tasaxmilhabitantes&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#realizamos el groupby para encontrar los casos totales y la poblacion total</span>
+<span class="n">df_agrupado</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;codigomunicipio&quot;</span><span class="p">,</span> <span class="s2">&quot;nombremunicipio&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">casos_totales</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;numerocasos&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>
+    <span class="n">poblacion_total</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;poblacion&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#reconstruimos la variable de tasaxmilhabitantes ponderada para usarse en los mapas </span>
+<span class="n">df_agrupado</span><span class="p">[</span><span class="s2">&quot;tasa_x_mil&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_agrupado</span><span class="p">[</span><span class="s2">&quot;casos_totales&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_agrupado</span><span class="p">[</span><span class="s2">&quot;poblacion_total&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se realiza un Barplot de los 10 con mayor tasa promedio de mortalidad general</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top10</span> <span class="o">=</span> <span class="n">df_agrupado</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;tasa_x_mil&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">top10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;tasa_x_mil&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;nombremunicipio&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Top 10 municipios con mayor tasa promedio de mortalidad&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tasa promedio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Municipio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f24ddacec8c148b487c98a6e088ac21517c94a796bb77c165db8165f43227d96.png" src="_images/f24ddacec8c148b487c98a6e088ac21517c94a796bb77c165db8165f43227d96.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar NombreMunicipio para no duplicar con mpio_cnmbr en el shapefile </span>
+<span class="n">df_agrupado_limpio</span> <span class="o">=</span> <span class="n">df_agrupado</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;nombremunicipio&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="merge-de-los-datos">
+<h1>Merge de los datos<a class="headerlink" href="#merge-de-los-datos" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#se hace otro codigo_municipio para realizar el merge </span>
+<span class="n">antioquia</span><span class="p">[</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">codigo_2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#se hace el merge de los datos </span>
+<span class="n">Datos_tot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">antioquia</span><span class="p">,</span><span class="n">df_agrupado_limpio</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Datos_tot</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dpto_ccdgo</th>
+      <th>mpio_ccdgo</th>
+      <th>mpio_cdpmp</th>
+      <th>dpto_cnmbr</th>
+      <th>mpio_cnmbr</th>
+      <th>mpio_crslc</th>
+      <th>mpio_tipo</th>
+      <th>mpio_narea</th>
+      <th>mpio_nano</th>
+      <th>shape_Leng</th>
+      <th>shape_Area</th>
+      <th>geometry</th>
+      <th>codigomunicipio</th>
+      <th>casos_totales</th>
+      <th>poblacion_total</th>
+      <th>tasa_x_mil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>05</td>
+      <td>001</td>
+      <td>05001</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>1965</td>
+      <td>MUNICIPIO</td>
+      <td>374.834005</td>
+      <td>2024</td>
+      <td>1.035380</td>
+      <td>0.030608</td>
+      <td>POLYGON ((-75.66974 6.3736, -75.66965 6.3736, ...</td>
+      <td>05001</td>
+      <td>229879</td>
+      <td>3.899727e+07</td>
+      <td>5.894747</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>05</td>
+      <td>002</td>
+      <td>05002</td>
+      <td>ANTIOQUIA</td>
+      <td>ABEJORRAL</td>
+      <td>1814</td>
+      <td>MUNICIPIO</td>
+      <td>507.141095</td>
+      <td>2024</td>
+      <td>1.158504</td>
+      <td>0.041384</td>
+      <td>POLYGON ((-75.46938 5.94575, -75.46897 5.94571...</td>
+      <td>05002</td>
+      <td>2036</td>
+      <td>3.589878e+05</td>
+      <td>5.671502</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>05</td>
+      <td>004</td>
+      <td>05004</td>
+      <td>ANTIOQUIA</td>
+      <td>ABRIAQUÍ</td>
+      <td>1912</td>
+      <td>MUNICIPIO</td>
+      <td>296.894050</td>
+      <td>2024</td>
+      <td>0.812183</td>
+      <td>0.024248</td>
+      <td>POLYGON ((-76.08351 6.7505, -76.08325 6.75048,...</td>
+      <td>05004</td>
+      <td>220</td>
+      <td>4.539414e+04</td>
+      <td>4.846440</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Datos_tot</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;dpto_ccdgo&#39;, &#39;mpio_ccdgo&#39;, &#39;mpio_cdpmp&#39;, &#39;dpto_cnmbr&#39;, &#39;mpio_cnmbr&#39;,
+       &#39;mpio_crslc&#39;, &#39;mpio_tipo&#39;, &#39;mpio_narea&#39;, &#39;mpio_nano&#39;, &#39;shape_Leng&#39;,
+       &#39;shape_Area&#39;, &#39;geometry&#39;, &#39;codigomunicipio&#39;, &#39;casos_totales&#39;,
+       &#39;poblacion_total&#39;, &#39;tasa_x_mil&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>verificamos si se generaron valores NA</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Datos_tot_aux</span><span class="o">=</span><span class="n">Datos_tot</span><span class="p">[[</span><span class="s1">&#39;casos_totales&#39;</span><span class="p">,</span><span class="s1">&#39;poblacion_total&#39;</span> <span class="p">,</span><span class="s1">&#39;tasa_x_mil&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Datos_tot_aux</span><span class="p">[</span><span class="n">Datos_tot_aux</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>casos_totales</th>
+      <th>poblacion_total</th>
+      <th>tasa_x_mil</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Podemos observar que no se crearon datos faltantes a la hora de hacer el merge</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualizacion-de-graficos-coropleticos">
+<h1>Visualizacion de Graficos coropleticos<a class="headerlink" href="#visualizacion-de-graficos-coropleticos" title="Link to this heading">#</a></h1>
+<p>se crearon diferentes graficos cloropleticos basados en la variable principal la cual es tasaxmil habitantes ponderada que fue encontrada anteriormente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antioquia</span><span class="p">[</span><span class="s1">&#39;tasa&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">Datos_tot</span><span class="p">[</span><span class="s1">&#39;tasa_x_mil&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">antioquia</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;tasa&quot;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([], [])
+</pre></div>
+</div>
+<img alt="_images/d4a8138950f5f7ecd5dbc5e8d26176b5cc1ef2724f391a4ecddaa43568190e48.png" src="_images/d4a8138950f5f7ecd5dbc5e8d26176b5cc1ef2724f391a4ecddaa43568190e48.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Crear figura y ejes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+
+<span class="c1">#  Mapa coroplético</span>
+<span class="n">antioquia</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;tasa&quot;</span><span class="p">,</span>       
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;OrRd&quot;</span><span class="p">,</span>           
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1">#  Agregar etiquetas</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">antioquia</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[:]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;mpio_cnmbr&#39;</span><span class="p">],</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>    <span class="c1"># 👈 aquí controlas tamaño de nombres de municipios</span>
+    <span class="p">)</span>
+
+<span class="c1">#  Ajustar la colorbar (último eje creado en la figura)</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>        <span class="c1"># último eje es la colorbar</span>
+<span class="n">cax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>   <span class="c1"># 👈 aquí haces más grandes los números</span>
+
+<span class="c1">#  Estética</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;Mapa de Antioquia: tasa de mortalidad general por municipio&quot;</span><span class="p">,</span>
+    <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/416686d490de09d8bcf358dd41a8e0b89e82a249a390243cfcb4570624094528.png" src="_images/416686d490de09d8bcf358dd41a8e0b89e82a249a390243cfcb4570624094528.png" />
+</div>
+</div>
+<p>Realizamos ademas graficos con cuantiles y natural breaks para tener un analisis mas completo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+<span class="c1">#Mapa con Quantiles </span>
+<span class="n">antioquia</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;tasa&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span>        
+    <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;Quantiles&quot;</span><span class="p">,</span> <span class="c1"># clasificación en cuantiles</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>                <span class="c1"># número de clases</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">antioquia</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[:]</span>
+    <span class="n">xytext</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[:]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;mpio_cnmbr&#39;</span><span class="p">],</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">xytext</span><span class="o">=</span><span class="n">xytext</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tasa de mortalidad general por 1000 hab (Quantiles)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Tasa de mortalidad general por 1000 hab (Quantiles)&#39;)
+</pre></div>
+</div>
+<img alt="_images/4d7c84728fe0cd3ff40ac6bfd448d2bc51421cfbc7ea43b930a3efd9b56dbc48.png" src="_images/4d7c84728fe0cd3ff40ac6bfd448d2bc51421cfbc7ea43b930a3efd9b56dbc48.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mapa con Natural Breaks</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+<span class="n">antioquia</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;tasa&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;YlGnBu&quot;</span><span class="p">,</span>        
+    <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;NaturalBreaks&quot;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">antioquia</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">xy</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[:]</span>
+    <span class="n">xytext</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[:]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;mpio_cnmbr&#39;</span><span class="p">],</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">xytext</span><span class="o">=</span><span class="n">xytext</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tasa de mortalidad general por 1000 hab (Natural Breaks)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1a5efdfd7dc801f7cb9577a862b17b4b5481f2f4ce07a8cc77db802f45cf4217.png" src="_images/1a5efdfd7dc801f7cb9577a862b17b4b5481f2f4ce07a8cc77db802f45cf4217.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Introduccion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Informe_Taller.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Explicacion Dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Implementacion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias">Librerias</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-utilizadas">Funciones utilizadas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-de-shapefile">Cargado de shapefile</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cargado-del-dataset">Cargado del dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacion-del-dataset">Preparacion del dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-de-los-datos">Merge de los datos</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-graficos-coropleticos">Visualizacion de Graficos coropleticos</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mateo Jose Gomez Rojas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
