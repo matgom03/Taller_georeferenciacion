@@ -1,4 +1,6 @@
-# Explicacion Dataset 
+# Informe General
+
+## Explicacion Dataset 
 
 Para la realizacion de este taller se escogio un dataset de la pagina de datos abiertos de colombia que contenia informacion a nivel municipal, siendo un dataset acerca de la tasa de mortalidad general en el departamento de antioquia, el cual contenia las siguientes variables:
 
@@ -18,7 +20,7 @@ Para la realizacion de este taller se escogio un dataset de la pagina de datos a
 
 **TasaXMilHabitantes**: la tasa de mortalidad general por mil habitantes en el municipio ese año
 
-# Analisis de Resultados de Mapas 
+## Analisis de Resultados de Mapas 
 
 Al haber realizado los mapas podemos notar los siguientes patrones:
 
@@ -33,7 +35,7 @@ Los Mapas en general tuvieron resultados similares en cuanto a la forma en la qu
 
 Se pudo observar tambien una desigualdad territorial marcada a traves de todo el departamento con algunos municipios presentando tasas mucho más altas, lo que podría reflejar condiciones críticas de salud pública y sociales que merecen atención prioritaria.
 
-# Reflexion General 
+## Reflexion General 
 La georreferenciación se ha convertido en una herramienta fundamental para los estudios sociales, porque permite ubicar la información en un territorio específico y, de esta forma, visualizar cómo los fenómenos sociales se distribuyen y se relacionan con el espacio. Al asociar datos con coordenadas geográficas, se facilita la construcción de mapas que no solo muestran cifras, sino que también revelan patrones espaciales, desigualdades y dinámicas territoriales que difícilmente se evidencian en tablas o promedios estadísticos.
 
 En el caso de indicadores sociales como la mortalidad, la pobreza, el acceso a educación o los niveles de violencia, la georreferenciación permite comprender que estos fenómenos no ocurren de manera uniforme en una región, sino que están condicionados por factores estructurales como la localización de servicios públicos, las condiciones económicas, el aislamiento geográfico o incluso la presencia de dinámicas sociales y culturales particulares. 
