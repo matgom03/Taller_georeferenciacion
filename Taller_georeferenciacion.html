@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Explicacion Dataset" href="Informe_Taller.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="Introduccion.html" />
+    <link rel="prev" title="Introduccion" href="Introduccion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +175,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="Introduccion.html">
-                    <no title>
+                    Introduccion
                 </a>
             </li>
         </ul>
@@ -189,6 +189,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Informe_Taller.html">Explicacion Dataset</a></li>
+
 
 </ul>
 
@@ -581,7 +582,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>Podemos observar que el shapefile descargado contiene el DPTO_CCDGO, geometry y DPTO_CNMBR</p>
+<p>Podemos observar que el shapefile descargado contiene el mpio_ccdgo, geometry y mpio_cnmbr</p>
 <p>filtramos los municipios de antioquia</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1342,7 +1343,105 @@ dtype: int64
 <img alt="_images/d9fa4591653c6d5068b076b2cb40556cfc3b9435213a1b34d7c7df1a6756cb3f.png" src="_images/d9fa4591653c6d5068b076b2cb40556cfc3b9435213a1b34d7c7df1a6756cb3f.png" />
 </div>
 </div>
-<p>Podemos observar que existen valores atipicos en la tasa de mortalidad por mil habitantes, siendo normalmente mayores a 8 en la tasa los que se consideran atipicos, debido a que estos son valores reales no se van a tratar en la preparacion</p>
+<p>Podemos observar que existen valores atipicos en la tasa de mortalidad por mil habitantes, siendo normalmente mayores a 8 en la tasa los que se consideran atipicos, ademas de valores mas bajos</p>
+<p>Revisamos los atipicos mediante el rango intercuartilico</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="c1"># Definir límites</span>
+<span class="n">limite_inferior</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">limite_superior</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="c1"># Filtrar los outliers</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">limite_inferior</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tasaxmilhabitantes&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">limite_superior</span><span class="p">)]</span>
+
+<span class="c1"># Mostrar las filas con valores atípicos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            nombremunicipio codigomunicipio                    ubicacion     nombreregion codigoregion  anio  numerocasos  tasaxmilhabitantes
+27                Caramanta            5145  POINT (-75.644483 5.548681)         SUROESTE            8  2005           45                 8.2
+32                 Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2005           83                 8.6
+53                  Granada            5313    POINT (-75.18443 6.14432)          ORIENTE            7  2005           99                10.1
+71               Montebello            5467  POINT (-75.524621 5.945694)         SUROESTE            8  2005           69                 9.2
+94                 San Luis            5660  POINT (-74.994436 6.042772)          ORIENTE            7  2005          110                10.0
+115                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2005          146                 8.4
+144                 Briceño            5107  POINT (-75.551532 7.110465)            NORTE            5  2006           69                 8.2
+154                Carolina            5150  POINT (-75.281494 6.723626)            NORTE            5  2006           37                 9.5
+197                 Murindó            5475   POINT (-76.82131 6.981328)            URABA            9  2006            5                 1.4
+205           Puerto Berrío            5579  POINT (-74.402022 6.490753)  MAGDALENA MEDIO            3  2006          323                 9.2
+233                  Tarazá            5790    POINT (-75.39983 7.58049)       BAJO CAUCA            2  2006          216                 9.6
+240                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2006          186                13.7
+244        Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2006           13                 1.6
+358                  Tarazá            5790    POINT (-75.39983 7.58049)       BAJO CAUCA            2  2007          213                 9.3
+365                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2007          161                11.9
+369        Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2007           13                 1.6
+404                Carolina            5150  POINT (-75.281494 6.723626)            NORTE            5  2008           37                 9.5
+490                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2008          143                10.5
+532                Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2009           89                 9.3
+608                  Tarazá            5790    POINT (-75.39983 7.58049)       BAJO CAUCA            2  2009          240                10.2
+615                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2009          165                12.1
+619        Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2009           13                 1.6
+628                   Amagá            5030   POINT (-75.703216 6.04063)         SUROESTE            8  2010          247                 8.8
+657                Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2010           81                 8.4
+705           Puerto Berrío            5579  POINT (-74.402022 6.490753)  MAGDALENA MEDIO            3  2010          299                 8.2
+740                Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2010          132                 9.7
+744        Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2010            8                 0.9
+751                Abriaquí            5004   POINT (-76.064563 6.63197)        OCCIDENTE            6  2011           27                10.1
+869        Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2011           14                 1.6
+874                Zaragoza            5895  POINT (-74.868261 7.492548)       BAJO CAUCA            2  2011          196                 8.2
+947                 Murindó            5475   POINT (-76.82131 6.981328)            URABA            9  2012            7                 1.6
+958                Remedios            5604    POINT (-74.69368 7.02808)         NORDESTE            4  2012          250                 9.4
+1119       Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2013            7                 0.8
+1154               Carolina            5150  POINT (-75.281494 6.723626)            NORTE            5  2014           36                 9.2
+1157               Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2014           80                 8.3
+1197                Murindó            5475   POINT (-76.82131 6.981328)            URABA            9  2014            7                 1.6
+1282               Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2015           93                 9.7
+1337                 Salgar            5642  POINT (-75.979184 5.963438)         SUROESTE            8  2015          192                10.4
+1369       Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2015           13                 1.5
+1407               Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2016           82                 8.5
+1440             La Pintada            5390  POINT (-75.606525 5.747143)         SUROESTE            8  2016           72                 8.6
+1490               Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2016          113                 8.3
+1506            Angelópolis            5036  POINT (-75.710262 6.111531)         SUROESTE            8  2017           53                 9.2
+1526               Caracolí            5142  POINT (-74.756712 6.410876)  MAGDALENA MEDIO            3  2017           45                 9.9
+1619       Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2017           13                 1.5
+1698                 Mutatá            5480  POINT (-76.436928 7.245319)            URABA            9  2018          122                 8.7
+1733                 Tarazá            5790    POINT (-75.39983 7.58049)       BAJO CAUCA            2  2018          255                 9.5
+1744       Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2018            9                 1.0
+1782               Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2019           81                 8.2
+1823                 Mutatá            5480  POINT (-76.436928 7.245319)            URABA            9  2019          131                 9.2
+1869       Vigía del Fuerte            5873  POINT (-76.896085 6.589081)            URABA            9  2019           12                 1.3
+1892                Betania            5091  POINT (-75.976261 5.745292)         SUROESTE            8  2020           92                 8.9
+1904               Carolina            5150  POINT (-75.281494 6.723626)            NORTE            5  2020           34                 8.6
+2006            Angelópolis            5036  POINT (-75.710262 6.111531)         SUROESTE            8  2021           49                 8.3
+2027              Caramanta            5145  POINT (-75.644483 5.548681)         SUROESTE            8  2021           43                 9.1
+2032               Cisneros            5190  POINT (-75.087684 6.538526)         NORDESTE            4  2021          115                11.4
+2033         Ciudad Bolívar            5101  POINT (-76.020994 5.850015)         SUROESTE            8  2021          240                 9.0
+2040                Ebéjico            5240  POINT (-75.768514 6.326468)        OCCIDENTE            6  2021          104                 8.4
+2057              Heliconia            5347  POINT (-75.733349 6.207128)        OCCIDENTE            6  2021           54                 9.9
+2062                 Jericó            5368  POINT (-75.786118 5.791557)         SUROESTE            8  2021          121                 8.7
+2068                  Maceo            5425  POINT (-74.673429 6.530691)  MAGDALENA MEDIO            3  2021           87                10.4
+2070               Medellín            5001  POINT (-75.564739 6.253104)  VALLE DE ABURRA            1  2021        21917                 8.5
+2073                 Mutatá            5480  POINT (-76.436928 7.245319)            URABA            9  2021          125                 8.6
+2080          Puerto Berrío            5579  POINT (-74.402022 6.490753)  MAGDALENA MEDIO            3  2021          347                 8.4
+2094               San Luis            5660  POINT (-74.994436 6.042772)          ORIENTE            7  2021          137                10.3
+2100          Santa Bárbara            5679  POINT (-75.568167 5.874215)         SUROESTE            8  2021          226                 8.2
+2101  Santa Fe de Antioquia            5042  POINT (-75.827742 6.556455)        OCCIDENTE            6  2021          249                 9.1
+2110               Titiribí            5809  POINT (-75.793717 6.063419)         SUROESTE            8  2021          103                 9.5
+2111                 Toledo            5819   POINT (-75.691555 7.01096)            NORTE            5  2021           42                 8.2
+2115               Valdivia            5854  POINT (-75.391627 7.292119)            NORTE            5  2021          130                 9.1
+2117                Vegachí            5858   POINT (-74.798745 6.77151)         NORDESTE            4  2021          114                 9.3
+2118                Venecia            5861  POINT (-75.733897 5.963555)         SUROESTE            8  2021          136                11.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos observar que hay datos atipicos mucho mayores y mucho menores de lo usual, sin embargo algunos de estos valores se pueden deber a otros factores como el tamaño de la poblacion del municipio, por lo que no se van a imputar debido a ser casos reales.</p>
 <p>realizamos una descripcion de las variables del dataset usando describe</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1609,7 +1708,7 @@ Name: codigomunicipio, Length: 2125, dtype: object
 </div>
 </div>
 </div>
-<p>Se realiza un Barplot de los 10 con mayor tasa promedio de mortalidad general</p>
+<p>Se realiza un Barplot de los 10 con mayor tasa ponderada de mortalidad general</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top10</span> <span class="o">=</span> <span class="n">df_agrupado</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;tasa_x_mil&quot;</span><span class="p">)</span>
@@ -1621,15 +1720,15 @@ Name: codigomunicipio, Length: 2125, dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">top10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;tasa_x_mil&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;nombremunicipio&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Top 10 municipios con mayor tasa promedio de mortalidad&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tasa promedio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Top 10 municipios con mayor tasa de mortalidad acumulada&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tasa ponderada&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Municipio&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f24ddacec8c148b487c98a6e088ac21517c94a796bb77c165db8165f43227d96.png" src="_images/f24ddacec8c148b487c98a6e088ac21517c94a796bb77c165db8165f43227d96.png" />
+<img alt="_images/6a2ba87eb5bf51435e39de68e4f4f34ac6c672943b717f1459042929de9d6dbb.png" src="_images/6a2ba87eb5bf51435e39de68e4f4f34ac6c672943b717f1459042929de9d6dbb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1654,7 +1753,7 @@ Name: codigomunicipio, Length: 2125, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#se hace el merge de los datos </span>
-<span class="n">Datos_tot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">antioquia</span><span class="p">,</span><span class="n">df_agrupado_limpio</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">Datos_tot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">antioquia</span><span class="p">,</span><span class="n">df_agrupado_limpio</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span><span class="s1">&#39;codigomunicipio&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1873,12 +1972,10 @@ Name: codigomunicipio, Length: 2125, dtype: object
         <span class="n">xy</span><span class="o">=</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
         <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>    <span class="c1"># 👈 aquí controlas tamaño de nombres de municipios</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>   
     <span class="p">)</span>
-
-<span class="c1">#  Ajustar la colorbar (último eje creado en la figura)</span>
-<span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>        <span class="c1"># último eje es la colorbar</span>
-<span class="n">cax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>   <span class="c1"># 👈 aquí haces más grandes los números</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>        
+<span class="n">cax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>   
 
 <span class="c1">#  Estética</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
@@ -1999,7 +2096,7 @@ Name: codigomunicipio, Length: 2125, dtype: object
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Introduccion</p>
       </div>
     </a>
     <a class="right-next"
