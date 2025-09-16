@@ -12,7 +12,7 @@ Para la realizacion de este taller se escogio un dataset de la pagina de datos a
 
 **Codigo de la region**: El codigo de la region en la que esta ubicado el municipio
 
-**Año**: El año en el que se analizaron los casos de mortalidad, desde 2005-2024
+**Año**: El año en el que se analizaron los casos de mortalidad, desde 2005-2021
 
 **NumeroCasos**: el numero de casos de mortalidad general analizados en el municipio en ese año 
 
@@ -34,8 +34,8 @@ Los Mapas en general tuvieron resultados similares en cuanto a la forma en la qu
 Se pudo observar tambien una desigualdad territorial marcada a traves de todo el departamento con algunos municipios presentando tasas mucho más altas, lo que podría reflejar condiciones críticas de salud pública y sociales que merecen atención prioritaria.
 
 # Reflexion General 
-El ejercicio de georreferenciar la tasa de mortalidad general en los municipios de Antioquia evidencia el valor que tiene esta herramienta en los estudios sociales. Más allá de calcular indicadores estadísticos, ubicar la información en un mapa permite reconocer desigualdades territoriales que no serían tan claras en una tabla de datos. Al representar las tasas acumuladas de mortalidad, el análisis mostró que, aunque la mayoría de municipios se encuentran en rangos intermedios, existen municipios donde las tasas son considerablemente más altas, revelando dinámicas sociales y de salud particulares.
+La georreferenciación se ha convertido en una herramienta fundamental para los estudios sociales, porque permite ubicar la información en un territorio específico y, de esta forma, visualizar cómo los fenómenos sociales se distribuyen y se relacionan con el espacio. Al asociar datos con coordenadas geográficas, se facilita la construcción de mapas que no solo muestran cifras, sino que también revelan patrones espaciales, desigualdades y dinámicas territoriales que difícilmente se evidencian en tablas o promedios estadísticos.
 
-Gracias a la creacion de estos mapas se pudo llegar a un mayor entendimiento de esta problematica al mostrar que la mortalidad no es homogénea en todo el departamento y los problemas sociales se expresan de manera diferenciada según el lugar, y que las intervenciones públicas deben considerar estas variaciones.
+En el caso de indicadores sociales como la mortalidad, la pobreza, el acceso a educación o los niveles de violencia, la georreferenciación permite comprender que estos fenómenos no ocurren de manera uniforme en una región, sino que están condicionados por factores estructurales como la localización de servicios públicos, las condiciones económicas, el aislamiento geográfico o incluso la presencia de dinámicas sociales y culturales particulares. 
 
-La georreferenciación se convierte, entonces, en un insumo clave para la planeación social y la toma de decisiones, ya que traduce los datos en una representación territorial que ilumina tanto desigualdades como oportunidades de acción. 
+De esta manera, la georreferenciación no solo ayuda a la investigación académica, sino que también constituye un insumo clave para la toma de decisiones públicas: permite focalizar recursos en territorios con mayores necesidades, identificar poblaciones vulnerables y diseñar políticas sociales más eficientes y con impacto real. En última instancia, georreferenciar datos es reconocer que lo social siempre ocurre en un lugar concreto, y que el territorio es una dimensión inseparable de la vida colectiva.
